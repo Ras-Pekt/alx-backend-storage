@@ -9,7 +9,7 @@ BEGIN
         FROM corrections
         JOIN projects
         ON projects.id = corrections.project_id
-        WHERE corrections.user_id = user_id
+        WHERE corrections.user_id = users.id
     );
 END;$$
 DELIMITER ;
