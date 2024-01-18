@@ -2,3 +2,4 @@
 - [0-uniq_users.sql](0-uniq_users.sql) - creates a table users on any database
 - [1-country_users.sql](1-country_users.sql) - creates a table users with enum attribute on any database
 - [2-fans.sql](2-fans.sql) - ranks country origins of bands, ordered by the number of (non-unique) fans
+- [3-glam_rock.sql](3-glam_rock.sql) - lists all bands with Glam rock as their main style, ranked by their longevity
