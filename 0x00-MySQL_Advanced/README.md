@@ -7,3 +7,4 @@
 - [5-valid_email.sql](5-valid_email.sql) - creates a trigger that resets the attribute valid_email only when the email has been changed
 - [6-bonus.sql](6-bonus.sql) - creates a stored procedure AddBonus that adds a new correction for a student
 - [7-average_score.sql](7-average_score.sql) - creates a stored procedure ComputeAverageScoreForUser that computes and store the average score for a student
+- [8-index_my_names.sql](8-index_my_names.sql) - creates an index idx_name_first on the table names and the first letter of name
