@@ -9,4 +9,4 @@
 - [7-average_score.sql](7-average_score.sql) - creates a stored procedure ComputeAverageScoreForUser that computes and store the average score for a student
 - [8-index_my_names.sql](8-index_my_names.sql) - creates an index idx_name_first on the table names and the first letter of name
 - [9-index_name_score.sql](9-index_name_score.sql) - creates an index idx_name_first_score on the table names and the first letter of name and the score
-- []
+- [10-div.sql](10-div.sql) - creates a function SafeDiv that divides (and returns) the first by the second number or returns 0 if the second number is equal to 0
