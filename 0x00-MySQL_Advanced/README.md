@@ -10,3 +10,4 @@
 - [8-index_my_names.sql](8-index_my_names.sql) - creates an index idx_name_first on the table names and the first letter of name
 - [9-index_name_score.sql](9-index_name_score.sql) - creates an index idx_name_first_score on the table names and the first letter of name and the score
 - [10-div.sql](10-div.sql) - creates a function SafeDiv that divides (and returns) the first by the second number or returns 0 if the second number is equal to 0
+- [11-need_meeting.sql](11-need_meeting.sql) - creates a view need_meeting that lists all students that have a score under 80 (strict) and no last_meeting or more than 1 month
