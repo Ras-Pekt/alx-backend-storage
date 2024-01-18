@@ -6,19 +6,19 @@ BEGIN
 
 	-- check if project exists
 	SELECT id INTO project_id
-	FROM  projects
+	FROM projects
 	WHERE name = project_name;
 
 	-- create one if project does not exist 
 	IF project_id IS NULL THEN
 	BEGIN
-		INSERT INTO projects(name)
+		INSERT INTO projects (name)
 		VALUES (project_name);
 		SET project_id = LAST_INSERT_ID();
 	END IF;
 
 	-- insert into existing or newly created project
-	INSERT INTO corrections(user_id, project_id, score)
+	INSERT INTO corrections (user_id, project_id, score)
 	VALUES (user_id, project_id, score);
 END;$$
 DELIMITER ;
