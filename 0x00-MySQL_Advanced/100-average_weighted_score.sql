@@ -4,7 +4,7 @@ DELIMITER $$
 CREATE PROCEDURE ComputeAverageWeightedScoreForUser(IN user_id INT)
 BEGIN
     UPDATE users
-    SET avg_score = (
+    SET average_score = (
         SELECT SUM(corrections.score * projects.weight) / SUM(projects.weight)
         FROM corrections
         INNER JOIN projects
