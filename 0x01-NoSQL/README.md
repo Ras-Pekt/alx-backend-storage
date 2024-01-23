@@ -4,3 +4,4 @@
 - [2-insert](2-insert) - inserts a document in the collection school
 - [3-all](3-all) - lists all documents in the collection school
 - [4-match](4-match) - lists all documents with name="Holberton school" in the collection school
+- [5-count](5-count) - displays the number of documents in the collection school
