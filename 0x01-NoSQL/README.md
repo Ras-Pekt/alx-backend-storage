@@ -7,3 +7,4 @@
 - [5-count](5-count) - displays the number of documents in the collection school
 - [6-update](6-update) - adds a new attribute to a document in the collection school
 - [7-delete](7-delete) - deletes all documents with name="Holberton school" in the collection school
+- [8-all.py](8-all.py) - lists all documents in a collection
