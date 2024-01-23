@@ -9,3 +9,4 @@
 - [7-delete](7-delete) - deletes all documents with name="Holberton school" in the collection school
 - [8-all.py](8-all.py) - lists all documents in a collection
 - [9-insert_school.py](9-insert_school.py) - inserts a new document in a collection based on kwargs
+- [10-update_topics.py](10-update_topics.py) - changes all topics of a school document based on the name
