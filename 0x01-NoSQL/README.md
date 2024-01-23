@@ -5,3 +5,4 @@
 - [3-all](3-all) - lists all documents in the collection school
 - [4-match](4-match) - lists all documents with name="Holberton school" in the collection school
 - [5-count](5-count) - displays the number of documents in the collection school
+- [6-update](6-update) - adds a new attribute to a document in the collection school
