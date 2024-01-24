@@ -12,14 +12,14 @@ class Cache:
     a Cache class that instantiates Redis client and flushes the instance,
     with a method that takes a data argument and returns a string.
     """
-    def __init__(self) -> None:
+    def __init__(self):
         """
         initiliazation function
         """
         self._redis = redis.Redis()
         self._redis.flushdb()
 
-    def store(self, data: Union[int, bytes, float, str]) -> str:
+    def store(self, data: Union[str, bytes, int, float]) -> str:
         """
         takes a data argument and returns a string
         """
