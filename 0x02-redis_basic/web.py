@@ -13,14 +13,17 @@ def get_page(url: str) -> str:
     """
     takes a url and returns the contents of the url
     """
-    cache.incr(f"count:{url}")
+    content = f"content:{url}"
+    counter = f"count:{url}"
+    cache.incr(counter)
 
-    data = cache.get(f"content:{url}")
+    data = cache.get(content)
     if data:
         return data.decode("utf-8")
 
-    new_content = requests.get(url).text
-    cache.setex(f"content:{url}", 10, new_content)
+    response = requests.get(url)
+    new_content = response.text
+    cache.setex(content, 10, new_content)
     return new_content
 
 
