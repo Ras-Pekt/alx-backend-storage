@@ -37,7 +37,6 @@ def call_history(method: Callable) -> Callable:
         self._redis.rpush(f"{method.__qualname__}:inputs", str(args))
         output = method(self, *args, **kwargs)
         self._redis.rpush(f"{method.__qualname__}:outputs", output)
-
         return output
     return wrapper
 
@@ -83,3 +82,18 @@ class Cache:
         parametrize Cache.get
         """
         return self.get(key, fn=int)
+
+    def replay(self, method: Callable) -> None:
+        """
+        display the history of calls of a particular function.
+        """
+        method_name = method.__qualname__
+        inputs = self._redis.lrange(f"{method_name}:inputs", 0, -1)
+        outputs = self._redis.lrange(f"{method_name}:outputs", 0, -1)
+
+        print(f"{method_name} was called {len(list(inputs))} times:")
+        io_list = list(zip(inputs, outputs))
+        for input, output in io_list:
+            input = input.decode('utf8')
+            output = output.decode('utf8')
+            print(f"{method_name}(*{input}) -> {output}")
