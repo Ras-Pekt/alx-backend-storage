@@ -6,12 +6,13 @@ to obtain the HTML content of a particular URL and returns it
 import requests
 import redis
 
+cache = redis.Redis()
+
 
 def get_page(url: str) -> str:
     """
     takes a url and returns the contents of the url
     """
-    cache = redis.Redis()
     cache.incr(f"count:{url}")
 
     data = cache.get(f"content:{url}")
