@@ -10,7 +10,7 @@ from functools import wraps
 
 def count_calls(method: Callable) -> Callable:
     """
-    takes a single method Callable argument and returns a Callable
+    deocrator to calculate number of method calls
     """
     key = method.__qualname__
 
@@ -21,6 +21,24 @@ def count_calls(method: Callable) -> Callable:
         """
         self._redis.incr(key)
         return method(self, *args, **kwargs)
+    return wrapper
+
+
+def call_history(method: Callable) -> Callable:
+    """
+    a decorator that stores the history of inputs and outputs
+    for a particular function
+    """
+    @wraps(method)
+    def wrapper(self, *args, **kwargs):
+        """
+        wrapper function
+        """
+        self._redis.rpush(f"{method.__qualname__}:inputs", str(args))
+        output = method(self, *args, **kwargs)
+        self._redis.rpush(f"{method.__qualname__}:outputs", output)
+
+        return output
     return wrapper
 
 
@@ -36,6 +54,7 @@ class Cache:
         self._redis = redis.Redis()
         self._redis.flushdb()
 
+    @call_history
     @count_calls
     def store(self, data: Union[str, bytes, int, float]) -> str:
         """
@@ -47,7 +66,7 @@ class Cache:
 
     def get(self, key: str, fn: Optional[Callable] = None) -> str:
         """
-        takes a key string argument and an optional Callable argument
+        converts the data back to the desired format
         """
         if fn:
             return fn(self._redis.get(key))
@@ -55,12 +74,12 @@ class Cache:
 
     def get_str(self, key: str) -> str:
         """
-        automatically parametrize Cache.get
+        parametrize Cache.get
         """
         return self.get(key, fn=lambda d: d.decode("utf-8"))
 
     def get_int(self, key: str) -> int:
         """
-        automatically parametrize Cache.get
+        parametrize Cache.get
         """
         return self.get(key, fn=int)
