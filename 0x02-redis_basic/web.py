@@ -13,18 +13,18 @@ def get_page(url: str) -> str:
     """
     takes a url and returns the contents of the url
     """
-    content = f"content:{url}"
-    counter = f"count:{url}"
-    cache.incr(counter)
+    content_key = "html:{}".format(url)
+    counter_key = "count:{}".format(url)
+    cache.incr(counter_key)
 
-    data = cache.get(content)
+    data = cache.get(content_key)
     if data:
         return data.decode("utf-8")
 
     response = requests.get(url)
-    new_content = response.text
-    cache.setex(content, 10, new_content)
-    return new_content
+    fresh_content = response.text
+    cache.set(content_key, fresh_content, ex=10)
+    return fresh_content
 
 
 if __name__ == "__main__":
